@@ -12,10 +12,16 @@
 <table class="table">
     <tr>
         <th>
+            Hotel
+        </th>
+        <th>
+            Provincia
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.nomeCompleto)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.tipoIdentificacao)
+            @Html.DisplayNameFor(model => model.texto)
         </th>
         <th></th>
     </tr>
@@ -23,10 +29,16 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.hotel.nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hotel.provincia.descricao)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.nomeCompleto)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.tipoIdentificacao)
+            @Html.DisplayFor(modelItem => item.texto)
         </td>
         <td>
             <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |

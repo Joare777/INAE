@@ -27,11 +27,16 @@ namespace Intranet.Models
         [Display(Name = "BI / Passaport")]
         public string identificacao { get; set; }
 
+        [Display(Name ="Provincia")]
+        public int provinciaId { get; set; }
+
         [Display(Name = "Hotel")]
         public int hotelId { get; set; }
 
         [Display(Name = "Texto")]
         public string texto { get; set; }
+
+        public bool aprovado { get; set; }
         
         public int? fileId { get; set; }
 
@@ -57,6 +62,8 @@ namespace Intranet.Models
 
         [ForeignKey("provinciaId")]
         public Provincia provincia { get; set; }
+
+        public ICollection<Reclamacao> listReclamacoes { get; set; }
     }
 
     public class Provincia

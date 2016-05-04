@@ -15,6 +15,9 @@ namespace Intranet.Models
 
         public DbSet<Provincia> Provincia { get; set; }
 
+        public DbSet<FileDescription> FileDescription { get; set; }
+
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

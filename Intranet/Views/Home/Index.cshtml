@@ -1,8 +1,10 @@
-﻿@{
+﻿@model Intranet.Models.Reclamacao
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+@*<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
         <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
         <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -63,10 +65,56 @@
         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
         <span class="sr-only">Next</span>
     </a>
-</div>
+</div>*@
 
 <div class="row">
-    <div class="col-md-3">
+
+    <div class="col-md-6">
+        <h4>Hoteis</h4>
+        <hr />
+
+        <table class="table">
+            <tr>
+                <th>
+                    Provincia
+
+                </th>
+                <th>
+                    Hotel
+                    
+                </th>
+                <th>
+                    Classificacao
+                </th>
+                <th>Nr. Reclamações</th>
+            </tr>
+
+            @foreach (Hotel item in ViewBag.hoteis)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.provincia.descricao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nome)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.classificacao)
+                    </td>
+                    
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                    </td>
+                </tr>
+            }
+         </table>
+</div>
+
+
+    @*<div class="col-md-3">
         <h2>Application uses</h2>
         <ul>
             <li>Sample pages using ASP.NET MVC 6</li>
@@ -85,8 +133,8 @@
             <li><a href="http://go.microsoft.com/fwlink/?LinkId=699318">Add client packages using Bower.</a></li>
             <li><a href="http://go.microsoft.com/fwlink/?LinkId=699319">Target development, staging or production environment.</a></li>
         </ul>
-    </div>
-    <div class="col-md-3">
+    </div>*@
+    @*<div class="col-md-3">
         <h2>Overview</h2>
         <ul>
             <li><a href="http://go.microsoft.com/fwlink/?LinkId=518008">Conceptual overview of what is ASP.NET 5</a></li>
@@ -97,14 +145,85 @@
             <li><a href="http://go.microsoft.com/fwlink/?LinkID=699322">Develop on different platforms</a></li>
             <li><a href="http://go.microsoft.com/fwlink/?LinkID=699323">Read more on the documentation site</a></li>
         </ul>
-    </div>
-    <div class="col-md-3">
-        <h2>Run & Deploy</h2>
-        <ul>
+    </div>*@
+    <div class="col-md-6">
+        @*<h2>Reclamação</h2>*@
+
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div class="form-horizontal">
+                <h4>Reclamacao</h4>
+                <hr />
+                <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="nomeCompleto" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="nomeCompleto" class="form-control" />
+                        <span asp-validation-for="nomeCompleto" class="text-danger" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="nacionalidade" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="nacionalidade" class="form-control" />
+                        <span asp-validation-for="nacionalidade" class="text-danger" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="identificacao" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <input asp-for="identificacao" class="form-control" />
+                        <span asp-validation-for="identificacao" class="text-danger" />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 control-label"> Provincia</label>
+                    <div class="col-md-10">
+                        <select asp-for="provinciaId" asp-items='ViewBag.provinciaId' class="form-control"></select>
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="hotelId" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        <select asp-for="hotelId" asp-items='ViewBag.hotelId' class="form-control"></select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="texto" class="col-md-2 control-label"></label>
+                    <div class="col-md-10">
+                        @Html.TextAreaFor(x => x.texto, 12, 1, new { @class = "form-control" })
+                        <span asp-validation-for="texto" class="text-danger" />
+                    </div>
+                </div>
+
+                <input type="file" name="files" accept="*" multiple />
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        </form>
+
+
+        @*<ul>
             <li><a href="http://go.microsoft.com/fwlink/?LinkID=517851">Run your app</a></li>
             <li><a href="http://go.microsoft.com/fwlink/?LinkID=517852">Run your app on .NET Core</a></li>
             <li><a href="http://go.microsoft.com/fwlink/?LinkID=517853">Run commands in your project.json</a></li>
             <li><a href="http://go.microsoft.com/fwlink/?LinkID=398609">Publish to Microsoft Azure Web Apps</a></li>
-        </ul>
+        </ul>*@
     </div>
 </div>
+
+@section Scripts {
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
