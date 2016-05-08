@@ -115,6 +115,8 @@ namespace Intranet.Migrations
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("aprovado");
+
                     b.Property<int?>("fileId");
 
                     b.Property<int>("hotelId");

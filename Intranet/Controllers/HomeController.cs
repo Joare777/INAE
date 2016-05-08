@@ -23,7 +23,7 @@ namespace Intranet.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.hoteis = _context.Hotel.Include(r => r.provincia); 
+            ViewBag.hoteis = _context.Hotel.Include(r => r.provincia).Include(r=>r.listReclamacoes); 
             ViewData["provinciaId"] = new SelectList(_context.Provincia, "id", "descricao");
             ViewData["hotelId"] = new SelectList(_context.Hotel, "id", "nome");
             return View();

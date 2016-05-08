@@ -12,13 +12,7 @@
         <hr />
         <div asp-validation-summary="ValidationSummary.ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="id" />
-        <div class="form-group">
-            <label asp-for="hotelId" class="control-label col-md-2">hotelId</label>
-            <div class="col-md-10">
-                <select asp-for="hotelId" class="form-control" />
-                <span asp-validation-for="hotelId" class="text-danger" />
-            </div>
-        </div>
+        <input type="hidden" asp-for="tipoIdentificacao" />
         <div class="form-group">
             <label asp-for="nomeCompleto" class="col-md-2 control-label"></label>
             <div class="col-md-10">
@@ -26,11 +20,50 @@
                 <span asp-validation-for="nomeCompleto" class="text-danger" />
             </div>
         </div>
+
         <div class="form-group">
-            <label asp-for="tipoIdentificacao" class="col-md-2 control-label"></label>
+            <label asp-for="nacionalidade" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="tipoIdentificacao" class="form-control" />
-                <span asp-validation-for="tipoIdentificacao" class="text-danger" />
+                <input asp-for="nacionalidade" class="form-control" />
+                <span asp-validation-for="nacionalidade" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="identificacao" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="identificacao" class="form-control" />
+                <span asp-validation-for="identificacao" class="text-danger" />
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label"> Provincia</label>
+            <div class="col-md-10">
+                <select asp-for="provinciaId" asp-items='ViewBag.provinciaId' class="form-control"></select>
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            <label asp-for="hotelId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select asp-for="hotelId" asp-items='ViewBag.hotelId' class="form-control"></select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="texto" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                @Html.TextAreaFor(x => x.texto, 12, 1, new { @class = "form-control" })
+                <span asp-validation-for="texto" class="text-danger" />
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="aprovado" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="aprovado" class="form-control" />
+                <span asp-validation-for="aprovado" class="text-danger" />
             </div>
         </div>
         <div class="form-group">

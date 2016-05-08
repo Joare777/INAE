@@ -126,6 +126,8 @@ namespace Intranet.Controllers
                 return HttpNotFound();
             }
             ViewData["hotelId"] = new SelectList(_context.Hotel, "id", "nome", reclamacao.hotelId);
+            ViewData["provinciaId"] = new SelectList(_context.Provincia, "id", "descricao",reclamacao.provinciaId);
+
             return View(reclamacao);
         }
 
@@ -141,6 +143,8 @@ namespace Intranet.Controllers
                 return RedirectToAction("Index");
             }
             ViewData["hotelId"] = new SelectList(_context.Hotel, "id", "hotel", reclamacao.hotelId);
+            ViewData["provinciaId"] = new SelectList(_context.Provincia, "id", "descricao", reclamacao.provinciaId);
+
             return View(reclamacao);
         }
 

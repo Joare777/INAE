@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
@@ -30,14 +32,23 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a asp-controller="Home" asp-action="Index">Home</a></li>
-                        <li><a asp-controller="Home" asp-action="About">Quem Somos</a></li>
-                        <li><a asp-controller="Home" asp-action="News">Noticias</a></li>
-                        <li><a asp-controller="Home" asp-action="News">Nossa Equipe</a></li>
-                        <li><a asp-controller="Home" asp-action="Contact">Contacto</a></li>
-                        <li><a asp-controller="Home" asp-action="Contact">F.A.Q.</a></li>
+                        @if (!User.IsSignedIn())
+                        {
+                            <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a asp-controller="Home" asp-action="About">Quem Somos</a></li>
+                            <li><a asp-controller="Home" asp-action="News">Noticias</a></li>
+                            <li><a asp-controller="Home" asp-action="News">Nossa Equipe</a></li>
+                            <li><a asp-controller="Home" asp-action="Contact">Contacto</a></li>
+                            <li><a asp-controller="Home" asp-action="Contact">F.A.Q.</a></li>
 
+                        }
+                        else
+                        {
+                            <li><a asp-controller="Reclamacao" asp-action="Index">Reclamacões</a></li>
+                            <li><a asp-controller="Hotel" asp-action="Index">Hotel</a></li>
+                            <li><a asp-controller="Provincia" asp-action="Index">Provincias</a></li>
 
+                        }
 
                     </ul>
                     @await Html.PartialAsync("_LoginPartial")
